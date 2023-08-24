@@ -11,7 +11,7 @@ public class GroundCollisionChecker : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.layer == LayerMask.NameToLayer("Ground"))
+        if (other.gameObject.CompareTag("Collectible"))
         {
             restartGameUI.ShowGameOverUI();
             GameManager.Instance.GameOver();

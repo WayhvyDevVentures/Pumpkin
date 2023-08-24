@@ -47,6 +47,6 @@ public class CharacterMove : MonoBehaviour
     public void ResetPosition()
     {
         rb.velocity = Vector2.zero;
-        transform.position = new Vector3(0, 0, 0);
+        transform.position = new Vector3(0, (float)-1.3, 0);
     }
 }

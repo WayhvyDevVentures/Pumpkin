@@ -1,7 +1,6 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
-
 public class RestartGameUI : MonoBehaviour
 {
     public TextMeshProUGUI gameOverText; // >:(
@@ -14,6 +13,7 @@ public class RestartGameUI : MonoBehaviour
 
     public void ShowGameOverUI()
     {
+        this.gameObject.SetActive(true);
         gameOverText.gameObject.SetActive(true);
         restartButton.gameObject.SetActive(true);
     }
@@ -26,6 +26,8 @@ public class RestartGameUI : MonoBehaviour
 
     public void RestartGame()
     {
+        Debug.Log("RestartGame method called!");
+        GameManager.Instance.ResetCurrentScore(); // Reset the current score to 0
         GameManager.Instance.RestartGame();
     }
 }

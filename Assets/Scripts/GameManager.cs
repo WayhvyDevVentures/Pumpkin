@@ -24,27 +24,13 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         LoadHighScore();
-
-        if (restartGameUI == null)
-        {
-            Debug.LogError("RestartGameUI reference is null in GameManager!");
-        }
-        else
-        {
-            Debug.Log("Calling HideGameOverUI from GameManager Start()");
-            restartGameUI.HideGameOverUI();
-        }
+        restartGameUI.HideGameOverUI();
     }
 
     public void UpdateHighScoreText()
     {
-        if (highScoreText == null)
-        {
-            Debug.LogError("HighScoreText reference is null in GameManager!");
-            return;
-        }
 
-        highScoreText.text = "High Score: " + highScore.ToString();
+        highScoreText.text = "High Score: " + highScore;
     }
 
     public void SaveHighScore()
@@ -56,6 +42,7 @@ public class GameManager : MonoBehaviour
     {
         highScore = PlayerPrefs.GetInt("HighScore", 0);
         UpdateHighScoreText();
+        ResetCurrentScore();
     }
 
     public void UpdateHighScore()
@@ -85,11 +72,7 @@ public class GameManager : MonoBehaviour
         {
             characterMove.enabled = false;
 
-            if (restartGameUI == null)
-            {
-                Debug.LogError("RestartGameUI reference is null in GameManager!");
-            }
-            else
+            if (restartGameUI != null)
             {
                 restartGameUI.ShowGameOverUI();
             }
@@ -98,14 +81,9 @@ public class GameManager : MonoBehaviour
 
     public void RestartGame()
     {
-        currentScore = 0;
         UpdateHighScoreText();
-
-        if (restartGameUI == null)
-        {
-            Debug.LogError("RestartGameUI reference is null in GameManager!");
-        }
-        else
+        ResetCurrentScore();
+        if (restartGameUI != null)
         {
             restartGameUI.HideGameOverUI();
         }
