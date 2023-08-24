@@ -562,6 +562,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   highScoreText: {fileID: 717076678}
+  currentScoreText: {fileID: 1987922243}
   restartGameUI: {fileID: 256260224}
 --- !u!4 &620054091
 Transform:
@@ -985,7 +986,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
-  collectedCountText: {fileID: 1987922243}
 --- !u!61 &1050510853
 BoxCollider2D:
   m_ObjectHideFlags: 0

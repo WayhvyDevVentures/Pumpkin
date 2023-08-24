@@ -27,7 +27,7 @@ public class RestartGameUI : MonoBehaviour
     public void RestartGame()
     {
         Debug.Log("RestartGame method called!");
-        GameManager.Instance.ResetCurrentScore(); // Reset the current score to 0
+        GameManager.Instance.ResetCurrentScore();
         GameManager.Instance.RestartGame();
     }
 }

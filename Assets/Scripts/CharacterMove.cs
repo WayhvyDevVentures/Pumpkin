@@ -4,8 +4,6 @@ public class CharacterMove : MonoBehaviour
 {
     public float moveSpeed = 5.0f;
     private Rigidbody2D rb;
-    private int collectedCount = 0;
-    public TMPro.TextMeshProUGUI collectedCountText;
     private GameManager gameManager;
 
     private void Awake()
@@ -29,8 +27,6 @@ public class CharacterMove : MonoBehaviour
         {
             transform.localScale = new Vector3(-1, 1, 1);
         }
-
-        collectedCountText.text = "Collected: " + collectedCount.ToString();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -38,9 +34,11 @@ public class CharacterMove : MonoBehaviour
         if (other.gameObject.CompareTag("Collectible"))
         {
             Destroy(other.gameObject);
-            collectedCount++;
             gameManager.IncrementCurrentScore();
-            gameManager.UpdateHighScoreText();
+        }
+        else if (other.gameObject.CompareTag("Ground"))
+        {
+            gameManager.GameOver();
         }
     }
 

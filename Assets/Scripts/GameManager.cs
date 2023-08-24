@@ -6,8 +6,10 @@ public class GameManager : MonoBehaviour
     private int highScore = 0;
     private int currentScore = 0;
     public TextMeshProUGUI highScoreText;
+    public TextMeshProUGUI currentScoreText;
     public RestartGameUI restartGameUI;
     private static GameManager instance;
+    private GameController gameController;
 
     public static GameManager Instance
     {
@@ -25,12 +27,20 @@ public class GameManager : MonoBehaviour
     {
         LoadHighScore();
         restartGameUI.HideGameOverUI();
+        gameController = FindObjectOfType<GameController>();
     }
 
     public void UpdateHighScoreText()
     {
-
         highScoreText.text = "High Score: " + highScore;
+    }
+
+    private void UpdateCurrentScoreText()
+    {
+        if (currentScoreText != null)
+        {
+            currentScoreText.text = "Score: " + currentScore;
+        }
     }
 
     public void SaveHighScore()
@@ -58,11 +68,13 @@ public class GameManager : MonoBehaviour
     public void IncrementCurrentScore()
     {
         currentScore++;
+        UpdateCurrentScoreText(); 
     }
 
     public void ResetCurrentScore()
     {
         currentScore = 0;
+        UpdateCurrentScoreText(); 
     }
 
     public void GameOver()
