@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -28,6 +29,7 @@ public class GameManager : MonoBehaviour
         LoadHighScore();
         restartGameUI.HideGameOverUI();
         gameController = FindObjectOfType<GameController>();
+        ResetHighScore(); // Reset high score to zero at the start
     }
 
     public void UpdateHighScoreText()
@@ -69,12 +71,20 @@ public class GameManager : MonoBehaviour
     {
         currentScore++;
         UpdateCurrentScoreText();
+        UpdateHighScore(); // Call this method to update the high score
     }
 
     public void ResetCurrentScore()
     {
         currentScore = 0;
         UpdateCurrentScoreText();
+    }
+
+    public void ResetHighScore()
+    {
+        highScore = 0;
+        SaveHighScore();
+        UpdateHighScoreText();
     }
 
     public void GameOver()
@@ -93,7 +103,6 @@ public class GameManager : MonoBehaviour
 
     public void RestartGame()
     {
-        UpdateHighScoreText();
         ResetCurrentScore();
         if (restartGameUI != null)
         {

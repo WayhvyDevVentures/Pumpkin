@@ -6,6 +6,9 @@ public class CharacterMove : MonoBehaviour
     private Rigidbody2D rb;
     private GameManager gameManager;
 
+    // Reference to the AudioSource component for the collect sound
+    public AudioSource collectSound;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -31,10 +34,16 @@ public class CharacterMove : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Clone"))
+        if (other.gameObject.CompareTag("Clone")) // Check for "Clone" tag
         {
             Destroy(other.gameObject);
             gameManager.IncrementCurrentScore();
+
+            // Play the collect sound effect
+            if (collectSound != null)
+            {
+                collectSound.Play();
+            }
         }
         else if (other.gameObject.CompareTag("Ground"))
         {
