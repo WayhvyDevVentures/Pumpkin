@@ -68,13 +68,13 @@ public class GameManager : MonoBehaviour
     public void IncrementCurrentScore()
     {
         currentScore++;
-        UpdateCurrentScoreText(); 
+        UpdateCurrentScoreText();
     }
 
     public void ResetCurrentScore()
     {
         currentScore = 0;
-        UpdateCurrentScoreText(); 
+        UpdateCurrentScoreText();
     }
 
     public void GameOver()
@@ -99,7 +99,6 @@ public class GameManager : MonoBehaviour
         {
             restartGameUI.HideGameOverUI();
         }
-
         CharacterMove characterMove = FindObjectOfType<CharacterMove>();
         if (characterMove != null)
         {

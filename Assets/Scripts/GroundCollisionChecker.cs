@@ -11,7 +11,7 @@ public class GroundCollisionChecker : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Collectible"))
+        if (other.gameObject.CompareTag("Clone"))
         {
             restartGameUI.ShowGameOverUI();
             GameManager.Instance.GameOver();

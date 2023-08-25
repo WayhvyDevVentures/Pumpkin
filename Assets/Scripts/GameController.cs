@@ -27,6 +27,9 @@ public class GameController : MonoBehaviour
             Vector3 spawnPosition = new Vector3(randomXSpawn, spawnY, 0f);
 
             GameObject newObject = Instantiate(fallingObjectPrefabs[randomIndex], spawnPosition, Quaternion.identity);
+
+            newObject.tag = "Clone";
+
             Rigidbody2D newObjectRigidbody = newObject.GetComponent<Rigidbody2D>();
             newObjectRigidbody.gravityScale = 0.1f;
         }
@@ -39,15 +42,22 @@ public class GameController : MonoBehaviour
 
     public void ClearAllFallingObjects()
     {
-        GameObject[] fallingObjects = GameObject.FindGameObjectsWithTag("Collectible");
+        GameObject[] fallingObjects = GameObject.FindGameObjectsWithTag("Clone");
         foreach (GameObject obj in fallingObjects)
         {
             Destroy(obj);
         }
     }
 
+
     public void StopSpawning()
     {
         isSpawningEnabled = false;
+    }
+
+    public void RestartGame()
+    {
+        ToggleSpawning(true);
+        ClearAllFallingObjects();
     }
 }

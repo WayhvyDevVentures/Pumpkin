@@ -31,7 +31,7 @@ public class CharacterMove : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Collectible"))
+        if (other.gameObject.CompareTag("Clone"))
         {
             Destroy(other.gameObject);
             gameManager.IncrementCurrentScore();
